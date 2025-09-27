@@ -79,4 +79,133 @@ console.log(`Place value: ${place} and type is ${typeof(place)}`)
  console.log(`Result 1:${coalesced1}`);
  console.log(`Result 2:${coalesced2}`);
 
- 
+ // function
+
+ function writeValue(val:string|null){
+   console.log(`Value:${val ?? "Fallback value"}`);
+ }
+
+ writeValue("USA");
+ writeValue(null);
+
+ // By default, TypeScript will allow functions to be invoked only when the number of arguments matches the number of parameters the function defines
+//  The ? character is used to  denote an optional parameter
+
+function newValue(val?:string){
+   console.log(`Value: ${val ?? "Fallback value"}`);
+}
+
+newValue("Op");
+newValue();
+
+// The ? operator has been applied to the val parameter, which means that the function can be in  voked with zero or one argument. Within the function, the parameter type is string | undefined,  because the value will be undefined if the function is invoked without an argument
+
+//  Defining default parameter values
+
+
+function unknown(val:string = "default values"){
+   console.log(`Value for default parameter function: ${val}`);
+}
+
+unknown("ScaryJod");
+unknown();
+
+//  Defining rest parameters
+// Rest parameters are used to capture any additional arguments when a function is invoked with 
+// additional arguments
+
+function restParametersFunction(val:string , ...extraInfo:string[]){
+   console.log(`Value:${val} , Extras:${extraInfo}`);
+}
+
+restParametersFunction("Bro" , "How are" , "you?");
+restParametersFunction("I am fine", "What about you?");
+
+//  Defining functions that return results
+
+// You can return results from functions by declaring the return data type and using the return  keyword within the function body
+function composeString(val:string):string{
+   return `Composed string :${ val}`;
+}
+
+console.log(composeString(" Hi,bro!"));
+
+// arrow functions
+function getUKCapital():string{
+   return "London";
+}
+
+function writeCity(f:()=>string){
+   console.log(`City:${f()}`);
+} // fat arrow syntax or lambda expression syntax.
+
+writeCity(getUKCapital);
+
+
+// inline function 
+writeCity(()=>"Paris");
+
+//  Understanding value closure
+
+//  Functions can access values that are defined in the surrounding code, using a feature called closure
+
+// This is a powerful feature that means you don’t have to define parameters on 
+// functions to pass around data values, but caution is required because it is easy to get unexpected 
+// results when using common variable names like counter or index, where you may not realize 
+// that you are reusing a variable name from the surrounding code
+writeCity(()=>"NY");
+let myNewCity = "Los Santos";
+writeCity(()=>myNewCity);
+
+// Working with arrays
+
+let myArray = [];
+myArray[0] = 100;
+myArray[1] = "Adam";
+myArray[2] = true;
+
+console.log(myArray);
+
+let newArray:any[] = []
+
+newArray[0] = 100;
+newArray[21] = "ksd";
+console.log(newArray); 
+
+//  Arrays can be restricted to values with specific types
+
+let restrictedArray:(number|string|boolean)[]=[];
+
+restrictedArray[0] = 100;
+restrictedArray[1] = "Adam";
+restrictedArray[2] = true;
+
+// Arrays can be defined and populated in a single statement
+let myOp:(number|string|boolean)[] = [100,"adam",1];
+console.log(myOp);
+
+// Enumerating the contents of an array
+
+let enumeratingArray:(number|string|boolean)[] = [11,11,"op",false];
+
+for(let i=0;i<enumeratingArray.length;i++){
+   console.log("Index"+ i+ " :" + enumeratingArray[i])
+}
+
+console.log("--------");
+
+enumeratingArray.forEach((value,index)=>{
+   console.log("Index" + index + ": "+value);
+})
+
+// Using the spread operator
+// The spread operator is used to expand an array so that its contents can be used as function arguments or combined with other arrays
+
+console.log("------")
+let examArray:(number|string|boolean)[] = [100,"adam",false];
+
+let otherArray = [...myArray,22,"njf",true];
+
+otherArray.forEach((value,index)=>{
+   console.log("Index "+ index + ":" +value);
+})
