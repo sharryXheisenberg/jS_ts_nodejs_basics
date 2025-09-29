@@ -209,3 +209,82 @@ let otherArray = [...myArray,22,"njf",true];
 otherArray.forEach((value,index)=>{
    console.log("Index "+ index + ":" +value);
 })
+
+//  Working with objects
+
+// let hat = {
+//     name: "Hat",
+//     price: 100
+//  };
+//  let boots = {
+//     name: "Boots",
+//     price: 100
+//  };
+
+ let me = {
+   firstName:"Saurabh",
+   lastName:"Pande"
+ };
+
+ console.log(`FirstName:${me.firstName} , LastName:${me.lastName}`);
+
+ let hat = {
+   name :"Hat",
+   price:1000
+ };
+ let boot = {
+   name :"boot",
+   price:100,
+   category:"Snow gear"
+ }
+
+//  function showParametersValues(product:{name:string , price :number}){
+//    console.log(`Name: ${product.name} , Price: ${product.price}`);
+//  }
+
+//  console.log(hat,boot);
+
+function printDetails(product:{name:string , price:number , category?:string}){
+   if(product.category!=undefined){
+      console.log(`Name: ${product.name} , Price: ${product.price} and Category: ${product.category}`);
+   }else{
+      console.log(`Name: ${product.name} , Price: ${product.price}`);
+   }
+}
+
+printDetails(hat);
+printDetails(boot);
+
+// classes and OOP
+
+class Product {
+   constructor(productName:string,price:number,category?:string){
+      this.productName = productName;
+      this.price = price;
+      this.category = category;
+   }
+
+   productName:string
+   price:number
+   category?:string
+
+   printDetails(){
+      if(this.category!=undefined){
+         console.log(`Product Name: ${this.productName} , price:${this.price} & category: ${this.category}`);
+      }
+      else{
+         console.log(`Name: ${this.productName} , Price: ${this.price}`);
+      }
+   }
+
+}
+let neHat = new Product("Hat",100);
+let newBoots = new Product("Boots",1000,"snow gear");
+
+
+neHat.printDetails();
+newBoots.printDetails();
+
+   
+// Access controls and simplified constructors
+
