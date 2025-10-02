@@ -1,3 +1,7 @@
+ import { Name , WeatherLocation } from "./modules";
+
+ // we can achieve this by specifying exports statments of modules components classes in one index.ts file
+ 
  function sum(first: number, second: number) {
     return first + second;
  }
@@ -258,7 +262,7 @@ printDetails(boot);
 // classes and OOP
 
 class Product {
-   constructor(productName:string,price:number,category?:string){
+   constructor(   productName:string,price:number,category?:string){
       this.productName = productName;
       this.price = price;
       this.category = category;
@@ -286,5 +290,73 @@ neHat.printDetails();
 newBoots.printDetails();
 
    
-// Access controls and simplified constructors
+// Access controls and simplified constructors after using access specifiors  we don't need to use this.param1=param1; or object initilization
+
+
+// class Cars{
+
+//    constructor(public company:string , public price:number , public owned?:string){
+//    }
+      
+//       newDetails(){
+//          if(this.owned!=undefined){
+//             console.log(`Company: ${this.company} , Price: ${this.price} , Is this you owned: ${this.owned}`);
+//          }
+//          else{
+//             console.log(`Company:${this.company} , Price:${this.price}`);
+//          }
+//       }
+// }
+
+// let newCar = new Cars("Merc",1000);
+// let newCar1 = new Cars("BMW",10000,"No");
+// newCar.newDetails();
+// newCar1.newDetails();
+
+
+
+// inheritance
+class Cars{
+   constructor(public company:string , public price:number , public owned?:string){
+   }    
+      newDetails(){
+         if(this.owned!=undefined){
+            console.log(`Company: ${this.company} , Price: ${this.price} , Is this you owned: ${this.owned}`);
+         }
+         else{
+            console.log(`Company:${this.company} , Price:${this.price}`);
+         }
+      }
+}
+
+class newCar extends Cars{
+
+   constructor(public company:string , public price:number , private discount:number){
+    super(company,price-discount);  
+   }
+}
+
+let newCarsObj = new newCar("Alpha Romeo", 10000,1000);
+let newCarsObj1 = new Cars("Ferrari" , 5000);
+newCarsObj.newDetails();
+newCarsObj1.newDetails();
+
+
+// working with the insanceof()
+
+console.log(`newCarsObj is object of: ${newCarsObj instanceof Cars}`);
+console.log(`newCarsObj is object of: ${newCarsObj instanceof Cars}`);
+console.log(`newCarsObj1 is object of: ${newCarsObj1 instanceof  Cars}`);
+console.log(`newCarsObj1 is object of: ${newCarsObj1 instanceof newCar}`);
+
+//  JavaScript modules are used to break up an application into separate files. At runtime, the dependencies between modules are resolved, 
+// Creating and using modules
+// Each TypeScript or JavaScript file that you add to a project is treated as a module. 
+
+let firstName1 = new Name("Saurabh","Pande");
+let weatherConditionInMyCity = new WeatherLocation("Cloudy","Baramati");
+
+console.log(firstName1.nameMessage);
+console.log(weatherConditionInMyCity.weatherMessage);
+
 
